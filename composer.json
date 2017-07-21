@@ -1,0 +1,21 @@
+{
+    "name": "theplanworks/content-vertex",
+    "description": "Add multisite CMS to laravel with shareable content across sites.",
+    "type": "library",
+    "require-dev": {
+        "laravel/framework": "^5.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wilson Bridgett",
+            "email": "wilson.bridgett@theplanworks.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "thePLAN\\ContentVertex\\": "src/"
+        }
+    },
+    "require": {}
+}

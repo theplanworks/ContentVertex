@@ -13,6 +13,7 @@ let mix = require('laravel-mix');
 
 mix.setPublicPath('public').options({ processCssUrls: false })
     .js('resources/assets/admin/js/app.js', 'public/js')
+    .extract(['axios', 'buefy', 'collect.js', 'vee-validate', 'vue', 'vue-router'])
     .sass('resources/assets/admin/sass/app.scss', 'public/css')
     .copy('node_modules/font-awesome/fonts', 'public/fonts')
     .copyDirectory('resources/assets/admin/js/ckeditor', 'public/js/ckeditor')

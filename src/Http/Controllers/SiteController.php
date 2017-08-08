@@ -2,40 +2,20 @@
 
 namespace thePLAN\ContentVertex\Http\Controllers;
 
-use Kris\LaravelFormBuilder\FormBuilderTrait;
-use function MongoDB\BSON\toJSON;
-use thePLAN\ContentVertex\Http\Forms\SiteForm;
 use thePLAN\ContentVertex\Models\Domain;
 use thePLAN\ContentVertex\Models\Site;
 use Illuminate\Http\Request;
-use Kris\LaravelFormBuilder\FormBuilder;
 
 class SiteController extends Controller
 {
-    use FormBuilderTrait;
 
-	/**
-	 * Variable to model
-	 *
-	 * @var site
-	 */
 	protected $model;
 
-	/**
-	 * Create instance of controller with Model
-	 *
-	 * @return void
-	 */
 	public function __construct(Site $model)
 	{
 		$this->model = $model;
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
 		$sites = $this->model->paginate();
@@ -43,27 +23,12 @@ class SiteController extends Controller
 		return $sites->toJson();
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create(FormBuilder $formBuilder)
+	public function create()
 	{
-	    $form = $formBuilder->create(SiteForm::class, [
-	        'method' => 'POST',
-            'url' => route('contentvertex.sites.store')
-        ]);
 
-		return view('contentvertex::sites.create', compact('form'));
+		return view('contentvertex::sites.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param Request $request
-	 * @return Response
-	 */
 	public function store(Request $request)
 	{
 		//$inputs = $request->all();
@@ -84,12 +49,6 @@ class SiteController extends Controller
 		return redirect()->route('contentvertex.sites.index')->with('message', 'Item created successfully.');
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
 		$site = $this->model->with(['menus', 'domains'])->findOrFail($id);
@@ -97,12 +56,6 @@ class SiteController extends Controller
 		return $site->toJson();
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id, FormBuilder $formBuilder)
 	{
 		$site = $this->model->with('menus')->findOrFail($id);
@@ -120,13 +73,6 @@ class SiteController extends Controller
 		return view('contentvertex::sites.edit', compact('site', 'form'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @param Request $request
-	 *
-	 */
 	public function update(Request $request, $id)
 	{
 		$values = $request->all();
@@ -159,12 +105,6 @@ class SiteController extends Controller
 		return $site->toJson();
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
 		$this->model->destroy($id);

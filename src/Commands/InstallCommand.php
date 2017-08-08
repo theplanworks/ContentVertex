@@ -62,14 +62,14 @@ class InstallCommand extends Command
         if (false === strpos($routes_contents, 'ContentVertex::routes()')) {
             $filesystem->append(
                 base_path('routes/web.php'),
-                "\n\nRoute::group(['prefix' => 'vertex'], function () {\n    ContentVertex::routes();\n});\n"
+                "\n\nRoute::group(['prefix' => 'content-vertex'], function () {\n    ContentVertex::routes();\n});\n"
             );
         }
-        \Route::group(['prefix' => 'vertex'], function () {
+        \Route::group(['prefix' => 'content-vertex'], function () {
             \ContentVertex::routes();
         });
 
-
+        $this->call('storage:link');
 
     }
 

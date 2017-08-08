@@ -8,7 +8,8 @@ export default new Router({
    routes: [
        {
            path: '/',
-           component: require('../pages/Dashboard.vue')
+           component: require('../pages/Dashboard.vue'),
+           name: 'dashboard'
        },
        {
            path: '/sites',
@@ -44,6 +45,11 @@ export default new Router({
            path: '/blocks/:blockId',
            component: require('../pages/blocks/Edit.vue'),
            name: 'block:edit'
+       },
+       {
+           path: '/media',
+           component: require('../pages/media/Index.vue'),
+           name: 'media:index'
        }
    ],
 });

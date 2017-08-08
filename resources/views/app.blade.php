@@ -19,6 +19,8 @@
         @yield('content')
     </div>
     <script src="{{content_asset('js/ckeditor/ckeditor.js')}}"></script>
+    <script src="{{ mix('js/manifest.js', 'vendor/content-vertex') }}"></script>
+    <script src="{{ mix('js/vendor.js', 'vendor/content-vertex') }}"></script>
     <script src="{{ mix('js/app.js', 'vendor/content-vertex') }}"></script>
 </body>
 </html>

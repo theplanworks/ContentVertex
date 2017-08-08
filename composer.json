@@ -18,6 +18,5 @@
         }
     },
     "require": {
-        "kris/laravel-form-builder": "^1.12"
     }
 }

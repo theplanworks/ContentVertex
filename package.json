@@ -29,7 +29,6 @@
     "font-awesome": "^4.7.0",
     "vee-validate": "^2.0.0-rc.8",
     "vue": "^2.4.2",
-    "vue-ckeditor2": "^1.0.7",
     "vue-router": "^2.7.0"
   },
   "devDependencies": {

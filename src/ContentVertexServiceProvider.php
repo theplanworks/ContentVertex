@@ -53,11 +53,10 @@ class ContentVertexServiceProvider extends ServiceProvider
             define('CONTENTVERTEX_PATH', realpath(__DIR__.'/../'));
         }
 
-        $this->app->register(FormBuilderServiceProvider::class);
+        //$this->app->register(FormBuilderServiceProvider::class);
 
         $loader = AliasLoader::getInstance();
         $loader->alias('ContentVertex', ContentVertexFacade::class);
-        $loader->alias('FormBuilder', FormBuilder::class);
 
         $this->app->singleton('contentvertex', function() {
             return new ContentVertex();

@@ -17,5 +17,7 @@
             "thePLAN\\ContentVertex\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "kris/laravel-form-builder": "^1.12"
+    }
 }

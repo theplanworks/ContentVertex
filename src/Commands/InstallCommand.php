@@ -4,6 +4,7 @@ namespace thePLAN\ContentVertex\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Kris\LaravelFormBuilder\FormBuilderServiceProvider;
 use thePLAN\ContentVertex\ContentVertexServiceProvider;
 
 class InstallCommand extends Command
@@ -39,19 +40,32 @@ class InstallCommand extends Command
     public function fire(Filesystem $filesystem)
     {
         $this->info("Publishing Service Providers and datatbase");
+
         $this->call('vendor:publish', ['--provider' => ContentVertexServiceProvider::class]);
 
+        $this->info('Migrating the database');
 
+        $this->call('migrate');
+
+        $this->info('Dumping the autoload');
+
+        $composer = $this->findComposer();
+
+        $process = new Process($composer.' dump-autoload');
+
+        $process->setWorkingDirectory(base_path())->run();
 
         $this->info('Adding ContentVertex routes to routes/web.php');
+
         $routes_contents = $filesystem->get(base_path('routes/web.php'));
+
         if (false === strpos($routes_contents, 'ContentVertex::routes()')) {
             $filesystem->append(
                 base_path('routes/web.php'),
-                "\n\nRoute::group(['prefix' => 'admin'], function () {\n    ContentVertex::routes();\n});\n"
+                "\n\nRoute::group(['prefix' => 'vertex'], function () {\n    ContentVertex::routes();\n});\n"
             );
         }
-        \Route::group(['prefix' => 'admin'], function () {
+        \Route::group(['prefix' => 'vertex'], function () {
             \ContentVertex::routes();
         });
 

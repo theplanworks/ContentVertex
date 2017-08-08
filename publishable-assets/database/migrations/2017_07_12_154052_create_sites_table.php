@@ -15,9 +15,7 @@ class CreateSitesTable extends Migration {
 		Schema::create('sites', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('prod_domain');
-            $table->string('preview_domain')->nullable();
-            $table->string('local_domain')->nullable();
+            $table->string('slug');
             $table->timestamps();
         });
 	}

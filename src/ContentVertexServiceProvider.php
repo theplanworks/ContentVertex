@@ -90,9 +90,6 @@ class ContentVertexServiceProvider extends ServiceProvider
         $publishablePath = dirname(__DIR__) . '/publishable-assets';
 
         $assets = [
-            'assets' => [
-                "{$publishablePath}/asserts/" => config_path('contentvertex.assets_path'),
-            ],
             'config' => [
                 "{$publishablePath}/config/contentvertex.php" => config_path('contentvertex.php'),
             ],

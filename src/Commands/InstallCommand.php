@@ -4,8 +4,8 @@ namespace thePLAN\ContentVertex\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Kris\LaravelFormBuilder\FormBuilderServiceProvider;
 use thePLAN\ContentVertex\ContentVertexServiceProvider;
+use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {

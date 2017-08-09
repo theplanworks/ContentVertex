@@ -6,6 +6,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Intervention\Image\ImageServiceProvider;
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
 use Kris\LaravelFormBuilder\FormBuilderServiceProvider;
 use thePLAN\ContentVertex\Commands\AdminCommand;
@@ -53,7 +54,7 @@ class ContentVertexServiceProvider extends ServiceProvider
             define('CONTENTVERTEX_PATH', realpath(__DIR__.'/../'));
         }
 
-        //$this->app->register(FormBuilderServiceProvider::class);
+        $this->app->register(ImageServiceProvider::class);
 
         $loader = AliasLoader::getInstance();
         $loader->alias('ContentVertex', ContentVertexFacade::class);

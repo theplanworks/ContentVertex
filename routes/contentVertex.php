@@ -18,6 +18,15 @@
         Route::resource('api/sites/{site}/menus', 'MenuController');
         Route::resource('api/pages', 'PageController');
         Route::resource('api/blocks', 'BlockController');
+
+
+        Route::group(['prefix' => 'api/media'], function (){
+            Route::post('files', 'MediaController@files');
+            Route::get('directories', 'MediaController@getAllDirs');
+            Route::post('new-folder', 'MediaController@newFolder');
+            Route::post('upload', 'MediaController@upload');
+        });
+
     });
 
 
